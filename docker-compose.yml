@@ -1,13 +1,11 @@
 version: '3'
 services:
   php_app:
-    build: './etender_app'
+    build: './etender'
     networks:
     - app_net
     volumes:
-    - ./etender_app/etender-dev:/var/www/html
-    - ./etender_app/php.ini:/usr/local/etc/php/php.ini
-    - /home/steffan/logs:/var/logs
+    - ./etender/app:/var/www/html/etender
 
   apache_server:
     build: './apache_server'
@@ -18,7 +16,7 @@ services:
     ports:
     - "8080:80"
     volumes:
-    - ./etender_app/etender-dev:/var/www/html
+    - ./etender/app:/var/www/html/etender
 
 networks:
   app_net:
